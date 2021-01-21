@@ -1,1 +1,5 @@
-Quickly thrown together, but should be usable for skillchecks! Just save the one page chat log (show all chat entries at the top of the chat -> Show on one page) in a folder called "raw" and change the name of the fill in the getSkills notebook to get the data out. Plotting in plotSkills, but you need to add a dict that mapps player names to char names.
+Quickly thrown together, but should be usable enough!
+Just save the one page chat log ("show all entries" -> Show on one page) in a folder called "raw",
+ then change the name of the file in the getSkills notebook and run it all to get the data out.
+Some plotting happens in plotSkills (gasp!), but you should add a dict that mapps player names to char names
+as well as a list of player names.
