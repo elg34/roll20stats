@@ -1,4 +1,6 @@
 raw/*
+!raw/.gitkeep
 players/*
+!players/.gitkeep
 *.csv
 .ipynb_checkpoints/*
