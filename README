@@ -1,5 +1,44 @@
-Quickly thrown together, but should be usable enough!
-Just save the one page chat log ("show all entries" -> Show on one page) in a folder called "raw",
- then change the name of the file in the getSkills notebook and run it all to get the data out.
-Some plotting happens in plotSkills (gasp!), but you should add a dict that mapps player names to char names
-as well as a list of player names.
+## prerequisites
+
+You'll the python packages BeautifulSoup, pandas and seaborn to run these notebooks.
+
+## get the chat history
+
+Download the one-page chat history from roll20 - first navigate to the chat history, by scrolling all the way up in the chat and then following the link to *view all chat entries* for this game.
+
+You should see the first out of a number of pages of chat logs. Click on the red button to *show on one Page*. Then simply save the html into the folder raw/.
+
+## setting up scraping 
+
+The parseChat notebook goes through all messages interatively and sees if they match the recognized patterns for skillchecks, saves or attack rolls made from a character sheet. Enter the name of the downloaded html at the top of the notebook.
+
+If you want to just see the raw rolls for names characters in chat, uncomment the lines for the player name mapping
+
+# read player names and get all player names
+file = open("players/players_"+name+".txt", "r")
+contents = file.read()
+players = ast.literal_eval(contents)
+file.close()
+plyrs=list(set(players.values()))
+
+and
+
+df["Player"]=df["Player"].apply(lambda x: players[x])
+
+Then run the notebook to save out a csv with the different rolls.
+
+If you (like me) forget to set your name in chat to your characters name, you can save a players_NAMEOFHTML.txt file in the players/ folder where you read in a dictionnary to map the player names.
+
+Example:
+{'Chatname1':'Charname1',
+ 'Chatname2':'Charname1',
+ 'Chatname3':'Charname2'
+}
+
+This way the chat names are correctly assigned to characters and only the character names show up in the plots. If you don't have all the name variations memorized (what??) just run the parser with an incomplete dictionnary and it will throw up an error citing the missing chat name mapping.
+
+## plot results
+
+This one's more straightforward, just run the notebook!
+
+
